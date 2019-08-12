@@ -1,7 +1,7 @@
 import React from 'react';
-import { render } from 'react-dom';
 
-const Header = () => {
+
+const Header = (props) => {
     return (
         <header className="top">
             <h1>Catch
@@ -12,12 +12,10 @@ const Header = () => {
                 Day
             </h1>
             <h3 className="tagline">
-                <span>Flesh Seafood Market</span>
+                <span>{props.tagline}</span>
             </h3>
         </header>
-        
     )
-
 };
 
 export default Header;
