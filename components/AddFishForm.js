@@ -11,7 +11,7 @@ const AddFishForm = (props) => {
     const createFish = (event) => {
         // 1. stop the form for submitting.
         event.preventDefault();
-
+        // 2. Create fish object.()
         const fish = {
             name   : nameRef['current'].value,
             price  : parseFloat(priceRef['current'].value),
@@ -20,7 +20,9 @@ const AddFishForm = (props) => {
             image  : imageRef['current'].value,
         };
 
-        props.addFish();
+        props.addFish(fish);
+        //3. Reflesh the form.
+        event.currentTarget.reset();
     }; 
 
     return (

@@ -4,14 +4,21 @@ import Order from './Order';
 import Inventory from './Inventory';
 
 const App = () => {
-    const [hidden, setHidden] = useState(true);
-    //const [fishes, setFishes] = useState(null);
-    // const [order, setOrder] = useState(null);
+    
+    const [fishes, setFishes] = useState({});
+    const [order, setOrder] = useState(null);
 
-    const addFish = () => {
-        console.log('meemme');
+
+    const addFish = (fish) => {
+        // Make a copy of the current state.
+        const copiedFish = {...fishes};
+        // Add new fish to the copiedFish.
+        copiedFish[`fish${Date.now()}`] = fish;
+        // Replace the original state to the copiedFish.
+        setFishes(copiedFish);
     };
  
+
     return (
         <div className="catch-of-the-day">
             <div className="menu">
@@ -19,7 +26,6 @@ const App = () => {
             </div>
             <Order />
             <Inventory addFish={addFish}/>
-            
         </div>
     )
 };
