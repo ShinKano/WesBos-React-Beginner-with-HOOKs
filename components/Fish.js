@@ -5,6 +5,11 @@ import {formatPrice} from '../helpers';
 const Fish = (props) => {
 
     const { image, name, price, desc, status } = props.details;
+    const isAvailable = status === 'available';
+
+    const handleClick = () => {
+        props.addToOrder(props.index);
+    };
 
     return (
         <li className="menu-fish">
@@ -14,9 +19,10 @@ const Fish = (props) => {
                 <span className="price">{formatPrice(price)}</span>
             </h3>
             <p>{desc}</p>
-            <button>Add to Cart</button>
+            <button disabled={!isAvailable} onClick={handleClick}>
+                {isAvailable ? 'Add to Order' : 'Sold Out' }
+            </button>
         </li>
-
     )
 };
 
