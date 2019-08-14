@@ -42,7 +42,7 @@ const App = () => {
                     {Object.keys(fishes).map(key => <Fish key={key} index={key} details={fishes[key]} addToOrder={addToOrder}/>)}
                 </ul>
             </div>
-            <Order />
+            <Order fishes={fishes} order={order} />
             <Inventory addFish={addFish} loadSampleFishes={loadSampleFishes}/>
         </div>
     )
