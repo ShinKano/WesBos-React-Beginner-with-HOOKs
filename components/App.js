@@ -10,13 +10,12 @@ const App = (props) => {
     
     const [fishes, setFishes] = useState({});
     const [order, setOrder] = useState({});
+
     const { params } = props.match;
-    
+
     //define a function here and use that in the component instead of setFishes directly
     const mySetFishes = ({ fishes }) => setFishes({ ...fishes });
-
     useEffect(() => {
-        console.log('ok');
         const ref = base.syncState(`${params.storeId}/fishes`, {
             context: {
                 setState: mySetFishes, //<-- pass it in here
@@ -27,6 +26,7 @@ const App = (props) => {
         return () => {
             base.removeBinding(ref);
         }
+        //pushするのはaddFish()で行う
     }, []);
 
     const addFish = (fish) => {
@@ -40,6 +40,15 @@ const App = (props) => {
         base.post(`${params.storeId}/fishes`, {
             data: fishes,
         });
+    };
+
+    const updateFish = (key, updatedFish) => {
+        // Make a copy of the current state.
+        const copiedFish = {...fishes};
+        //  Update that state.
+        copiedFish[key] = updatedFish;
+        // setState()
+        setFishes(copiedFish);
     };
  
     const loadSampleFishes = () => {
@@ -65,7 +74,12 @@ const App = (props) => {
                 </ul>
             </div>
             <Order fishes={fishes} order={order} />
-            <Inventory addFish={addFish} loadSampleFishes={loadSampleFishes}/>
+            <Inventory 
+                addFish={addFish}
+                loadSampleFishes={loadSampleFishes}
+                fishes={fishes} 
+                updateFish={updateFish}
+            />
         </div>
     )
 };

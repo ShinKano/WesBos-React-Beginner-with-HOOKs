@@ -31,7 +31,7 @@ const AddFishForm = (props) => {
             <input name="price" ref={priceRef} type="text" placeholder="price"/>
             <select name="status" ref={statusRef}>
                 <option value="available">Fresh!</option>
-                <option value="anavailable">Sold Out!</option>
+                <option value="unavailable">Sold Out!</option>
             </select>
 
             <textarea name="desc" ref={descRef} placeholder="desc"/>
